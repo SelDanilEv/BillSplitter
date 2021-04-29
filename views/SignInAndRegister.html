@@ -1,0 +1,28 @@
+<div id="wrapper_signin">
+    <h2>Welcome in Share with me</h2>
+    <div id="signin">
+        <input type="text" name="USER_NAME" placeholder="username"/>
+        <input type="password" name="USER_PASS" placeholder="password"/>
+        <button type="submit" onclick="TryLogin()">&#xf0da;</button>
+    </div>
+</div>
+<script>
+    function TryLogin() {
+        fetch(base_api_path + 'user/connect',
+            {
+                method: 'POST',
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify(
+                    {
+                        NAME: document.getElementsByName('USER_NAME')[0].value,
+                        PASS: document.getElementsByName('USER_PASS')[0].value
+                    }
+                )
+            })
+            .then(response => response.text())
+            .then(view => {
+                    PutContentInMainBlock(view);
+                }
+            );
+    }
+</script>
