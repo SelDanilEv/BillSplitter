@@ -1,4 +1,5 @@
 const userRepository = require("../repository/UserRepository");
+const fs = require('fs');
 
 exports.RegisterUser = async function (request, response) {
     await userRepository.RegisterUser(request.body.NAME, request.body.PASS);
@@ -11,7 +12,8 @@ exports.ConnectUser = async function (request, response) {
     }
     let res = await userRepository.VerifyPassword(request.body.NAME,request.body.PASS);
     if(res){
-        response.redirect("/connect");
+        let view = fs.readFileSync('./view/views/ConnectRoom.html',"utf8");
+        response.redirect(view);
     }
     else{
         response.redirect("/");

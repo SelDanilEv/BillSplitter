@@ -13,6 +13,12 @@ h1{
 	width: 200px;
 	text-align: center;
 }
+
+#content{
+	width: fit-content;
+	margin: 0 auto;
+}
+
 #wrapper_signin{
 	position: absolute;
 	width: 320px;
@@ -67,7 +73,7 @@ h1{
 #signin  input[type="text"]:focus, #signin  input[type="password"]:focus{
 	color: rgb(255, 255, 255);
 }
-#signin button[type="submit"]{
+#signin input[type="button"]{
 	display: block;
 	position: absolute;
 	width: 52px;

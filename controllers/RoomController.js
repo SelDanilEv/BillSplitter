@@ -1,18 +1,17 @@
 const roomRepository = require("../repository/RoomRepository");
 
 exports.ConnectToRoom = async function (request, response) {
-    let status = false;
     if (!await roomRepository.IsRoomExist(request.body.ROOM_NAME)) {
-        await roomRepository.CreateRoom(request.body.ROOM_NAME, request.body.PASS);
+        await roomRepository.CreateRoom(request.body.ROOM_NAME, request.body.ROOM_PASS);
     }
-    if (await roomRepository.VerifyPassword(request.body.ROOM_NAME, request.body.PASS)) {
-        status = true;
-
+    if (await roomRepository.VerifyPassword(request.body.ROOM_NAME, request.body.ROOM_PASS)) {
         if (!await roomRepository.IsUserBelongToRoom(request.body.ROOM_NAME, request.body.USER_NAME)) {
-            await roomRepository.AddUserToRoom(request.body.ROOM_NAME, request.body.USER_NAME);
+            await roomRepository.AddUserToRoom(request.body.ROOM_NAME, request.currentUser.NAME);
         }
+        // let view = fs.readFileSync('./view/views/SignInAndRegister.html',"utf8");
+        response.send('view');
     }
-    response.send(JSON.stringify({status: status}));
+    response.send(WrongPassword);
 };
 
 exports.UpdateRoom = async function (request, response) {
