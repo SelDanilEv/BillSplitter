@@ -1,5 +1,5 @@
 const express = require("express");
-const HomeController = require("../controllers/HomeController");
+const HomeController = require("./../controllers/HomeController");
 const homeRouter = express.Router();
 
 homeRouter.get("/about", HomeController.about);

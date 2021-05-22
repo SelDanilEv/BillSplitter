@@ -1,6 +1,6 @@
-const Room = require('../models/db_models').ROOM;
-const UserRoom = require('../models/db_models').USER_ROOM;
-const bcrypt = require('../security/bcrypt')
+const Room = require('./../models/db_models').ROOM;
+const UserRoom = require('./../models/db_models').USER_ROOM;
+const bcrypt = require('./../security/bcrypt')
 
 exports.CreateRoom = async function (name, password) {
     if (name && password && !await this.IsRoomExist(name)) {

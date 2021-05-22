@@ -1,4 +1,4 @@
-const REQUEST = require('../models/db_models').REQUEST;
+const REQUEST = require('./../models/db_models').REQUEST;
 
 exports.CreateRequest = async function (user_from, user_to, comment, amount) {
     REQUEST.create({

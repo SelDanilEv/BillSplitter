@@ -1,5 +1,5 @@
-const USER = require('../models/db_models').USER;
-const bcrypt = require('../security/bcrypt')
+const USER = require('./../models/db_models').USER;
+const bcrypt = require('./../security/bcrypt')
 
 exports.RegisterUser = async function (name, password) {
     if (name && password && !await this.IsUserExist(name)) {

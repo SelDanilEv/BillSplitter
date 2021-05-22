@@ -1,5 +1,5 @@
 const express = require("express");
-const roomController = require("../controllers/RoomController.js");
+const roomController = require("./../controllers/RoomController.js");
 const roomRouter = express.Router();
 
 roomRouter.post("/connect", roomController.ConnectToRoom);

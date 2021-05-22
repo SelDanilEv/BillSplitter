@@ -1,5 +1,5 @@
 const express = require("express");
-const requestController = require("../controllers/RequestController");
+const requestController = require("./../controllers/RequestController");
 const roomRouter = express.Router();
 
 roomRouter.post("/create", requestController.CreateRequest);
