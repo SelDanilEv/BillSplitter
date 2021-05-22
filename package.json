@@ -1,6 +1,6 @@
 {
-  "name": "App",
-  "version": "2.0.0",
+  "name": "sharewithme",
+  "version": "1.0.0",
   "dependencies": {
     "bcrypt": "^5.0.1",
     "body-parser": "^1.19.0",
@@ -20,7 +20,7 @@
     "start": "node index.js"
   },
   "keywords": [],
-  "author": "",
+  "author": "Defender SD",
   "license": "ISC",
-  "description": ""
+  "description": "bill splitter"
 }

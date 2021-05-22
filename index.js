@@ -75,7 +75,7 @@ app.use(function (req, res, next) {
 });
 
 app.listen(PORT, () => {
-    console.log('Listening on http://localhost:3001`');
+    console.log(`Listening on http://localhost:${PORT}`);
 });
 
 
