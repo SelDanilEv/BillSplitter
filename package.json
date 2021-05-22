@@ -1,6 +1,6 @@
 {
   "name": "App",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "dependencies": {
     "bcrypt": "^5.0.1",
     "body-parser": "^1.19.0",
@@ -14,5 +14,9 @@
   "devDependencies": {
     "express-session": "^1.17.1",
     "sequelize": "^6.6.2"
+  },
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
   }
 }
