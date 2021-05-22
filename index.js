@@ -12,6 +12,8 @@ const homeRouter = require("./routers/HomeRouter.js");
 const sequelize = require("./db_connection.js");
 const userRepository = require("./repository/UserRepository");
 
+const PORT = process.env.PORT || 3001;
+
 app.use(bodyParser.urlencoded({
     extended: true
 }));
@@ -72,7 +74,7 @@ app.use(function (req, res, next) {
     res.status(404).send("Not Found")
 });
 
-app.listen(3001, () => {
+app.listen(PORT, () => {
     console.log('Listening on http://localhost:3001`');
 });
 
