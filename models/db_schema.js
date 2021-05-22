@@ -31,7 +31,7 @@ function internalORM(sequelize) {
     REQUEST.init(
         {
             id: {type: Sequelize.INTEGER, primaryKey: true, autoIncrement: true},
-            AMOUNT: {type: Sequelize.FLOAT, allowNull: false},
+            AMOUNT: {type: Sequelize.DOUBLE, allowNull: false},
             COMMENT: {type: Sequelize.STRING, allowNull: true},
             ACCEPTED: {type: Sequelize.BOOLEAN, allowNull: false, defaultValue: 0}
         },

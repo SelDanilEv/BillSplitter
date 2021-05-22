@@ -56,7 +56,9 @@ exports.AcceptRequest = async function (user_from, user_to, comment, amount) {
                 AMOUNT: amount,
             }
         }
-    ).catch((err) => console.log('Error: ' + err.message));
+    ).catch((err) =>
+        console.log('Error: ' + err.message)
+    );
 }
 
 exports.RemoveRequest = async function (user_from, user_to, comment, amount) {
