@@ -5,14 +5,12 @@
     "bcrypt": "^5.0.1",
     "body-parser": "^1.19.0",
     "express": "^4.17.1",
-    "mssql": "^6.3.1",
     "mysql2": "^2.2.5",
-    "passport": "^0.4.1",
-    "passport-local": "^1.0.0",
-    "tedious": "^11.0.7"
+    "passport": "^0.4.1"
   },
   "devDependencies": {
-    "express-session": "^1.17.1",
+    "express-session": "^1.17.2",
+    "passport-local": "^1.0.0",
     "sequelize": "^6.6.2"
   },
   "main": "index.js",
