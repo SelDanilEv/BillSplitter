@@ -1,0 +1,68 @@
+<section class="container">
+    <div class="iconblock-7">
+        <div class="icon">
+            <i class="fa fa-lock"></i>
+        </div>
+        <div class="large_txt">Total debt:</div>
+        <div id="user_debts"></div>
+        <div class="large_txt">$</div>
+    </div>
+    <nav>
+        <ul class="nav">
+            <li>
+                <button onclick="OpenNewBillPage()" title="Create new bill">Create new bill</button>
+            </li>
+            <li>
+                <button onclick="ChangeRoom()" title="Change room">Change room</button>
+            </li>
+            <li>
+                <button onclick="LeaveRoom()" title="Leave room">Leave room</button>
+            </li>
+            <li>
+                <button onclick="Logout()" title="Logout">Logout</button>
+            </li>
+            <li>
+                <button onclick="loadMainPageInfo()" title="Refresh"><img class="nav-icon" src="../img/refresh.png">
+                </button>
+            </li>
+        </ul>
+    </nav>
+</section>
+<div class="main_wrapper">
+    <div class="members_list">
+        <h2 class="center_txt">Members</h2>
+        <ol class="rounded" id="room_members" class="homeBlock">
+        </ol>
+    </div>
+
+    <div class="request_to_me_table">
+        <h2 class="center_txt">Debts to me</h2>
+        <table>
+            <tr>
+                <th>From</th>
+                <th>Amount</th>
+                <th>Comment</th>
+                <th>Action</th>
+            </tr>
+            </thead>
+            <tbody id="requests_to_me" class="homeBlock">
+            </tbody>
+        </table>
+        <div id="showerror"></div>
+    </div>
+
+    <div class="request_from_me_table">
+        <h2 class="center_txt">My debts</h2>
+        <table>
+            <thead>
+            <tr>
+                <th>To</th>
+                <th>Amount</th>
+                <th>Comment</th>
+            </tr>
+            </thead>
+            <tbody id="requests_from_me" class="homeBlock">
+            </tbody>
+        </table>
+    </div>
+</div>

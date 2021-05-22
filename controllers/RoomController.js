@@ -1,6 +1,13 @@
 const roomRepository = require("../repository/RoomRepository");
+const fs = require('fs');
+const consts = require("../helpers/Consts");
 
 exports.ConnectToRoom = async function (request, response) {
+    if(!request.body.ROOM_NAME || !request.body.ROOM_PASS){
+        response.send(consts.BadRequest);
+        return;
+    }
+
     if (!await roomRepository.IsRoomExist(request.body.ROOM_NAME)) {
         await roomRepository.CreateRoom(request.body.ROOM_NAME, request.body.ROOM_PASS);
     }
@@ -8,10 +15,13 @@ exports.ConnectToRoom = async function (request, response) {
         if (!await roomRepository.IsUserBelongToRoom(request.body.ROOM_NAME, request.body.USER_NAME)) {
             await roomRepository.AddUserToRoom(request.body.ROOM_NAME, request.currentUser.NAME);
         }
-        // let view = fs.readFileSync('./view/views/SignInAndRegister.html',"utf8");
-        response.send('view');
+
+        let view = fs.readFileSync('./view/views/HomePage.html',"utf8");
+        response.send(view);
+        return
     }
-    response.send(WrongPassword);
+
+    response.send(consts.WrongPassword);
 };
 
 exports.UpdateRoom = async function (request, response) {
@@ -36,6 +46,11 @@ exports.GetAllUsersByRoom = async function (request, response) {
 
 exports.AddUserToRoom = async function (request, response) {
     await roomRepository.AddUserToRoom(request.body.ROOM_NAME, request.body.USER_NAME);
+    response.send();
+};
+
+exports.RemoveUserFromRoom = async function (request, response) {
+    await roomRepository.RemoveUserFromRoom(request.body.ROOM_NAME, request.body.USER_NAME);
     response.send();
 };
 

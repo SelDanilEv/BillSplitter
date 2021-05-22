@@ -1,0 +1,45 @@
+.rounded {
+    counter-reset: li;
+    list-style: none;
+    padding: 0;
+    text-shadow: 0 1px 0 rgba(0, 0, 0, 0.5);
+}
+.rounded .current_user {
+    background: #b0d157;
+}
+.rounded span {
+    position: relative;
+    display: block;
+    padding: .4em .4em .4em 2em;
+    margin: .5em 0;
+    background: #474747;
+    color: #e9e9e9;
+    text-decoration: none;
+    border-radius: .3em;
+    transition: .3s ease-out;
+}
+.rounded span:hover {background: #14530d;}
+.rounded span:hover:before {transform: rotate(360deg);}
+.rounded span:before {
+    content: counter(li);
+    counter-increment: li;
+    position: absolute;
+    left: -1.3em;
+    top: 50%;
+    margin-top: -1.3em;
+    background: #023915;
+    height: 2em;
+    width: 2em;
+    line-height: 2em;
+    border: .3em solid #858585;
+    text-align: center;
+    font-weight: bold;
+    border-radius: 2em;
+    transition: all .3s ease-out;
+}
+
+.members_list{
+    min-width: 15%;
+    max-width: 600px;
+    margin: 0 auto;
+}

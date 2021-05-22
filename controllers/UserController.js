@@ -1,21 +1,25 @@
 const userRepository = require("../repository/UserRepository");
 const fs = require('fs');
+const consts = require("../helpers/Consts");
 
 exports.RegisterUser = async function (request, response) {
     await userRepository.RegisterUser(request.body.NAME, request.body.PASS);
     response.send();
 };
 
+exports.GetCurrentUser = async function (request, response) {
+    response.send(JSON.stringify(request.user.NAME || null));
+};
+
 exports.ConnectUser = async function (request, response) {
-    if (!await userRepository.IsUserExist(request.body.NAME)){
+    if (!await userRepository.IsUserExist(request.body.NAME)) {
         await userRepository.RegisterUser(request.body.NAME, request.body.PASS);
     }
-    let res = await userRepository.VerifyPassword(request.body.NAME,request.body.PASS);
-    if(res){
-        let view = fs.readFileSync('./view/views/ConnectRoom.html',"utf8");
+    let res = await userRepository.VerifyPassword(request.body.NAME, request.body.PASS);
+    if (res) {
+        let view = fs.readFileSync('./view/views/ConnectRoom.html', "utf8");
         response.redirect(view);
-    }
-    else{
+    } else {
         response.redirect("/");
     }
 
@@ -48,8 +52,8 @@ exports.IsUserExist = async function (request, response) {
 
 exports.VerifyPassword = async function (request, response) {
     let res = false;
-    if(await userRepository.IsUserExist(request.body.NAME)){
-        res = await userRepository.VerifyPassword(request.body.NAME,request.body.PASS);
+    if (await userRepository.IsUserExist(request.body.NAME)) {
+        res = await userRepository.VerifyPassword(request.body.NAME, request.body.PASS);
     }
     response.send(JSON.stringify({status: res}));
 };

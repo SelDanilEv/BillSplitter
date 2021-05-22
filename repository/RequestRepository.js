@@ -11,6 +11,13 @@ exports.CreateRequest = async function (user_from, user_to, comment, amount) {
         .catch((err) => console.log('Error: ' + err.message));
 };
 
+exports.UpdateRequest = async function (user_from, user_to,comment,amount) {
+    REQUEST.update(
+        {AMOUNT: amount},
+        {where: {USER_FROM: user_from, USER_TO: user_to, COMMENT:comment}}
+    ).catch((err) => console.log('Error: ' + err.message));
+}
+
 exports.GetRequest = async function (user_from, user_to, amount, accepted) {
     return await REQUEST.findAll({
         where: {

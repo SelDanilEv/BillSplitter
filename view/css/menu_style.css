@@ -1,0 +1,162 @@
+/*html, body, div, span, applet, object, iframe,*/
+/*h1, h2, h3, h4, h5, h6, p, blockquote, pre,*/
+/*a, abbr, acronym, address, big, cite, code,*/
+/*del, dfn, em, img, ins, kbd, q, s, samp,*/
+/*small, strike, strong, sub, sup, tt, var,*/
+/*b, u, i, center,*/
+/*dl, dt, dd, ol, ul, li,*/
+/*fieldset, form, label, legend,*/
+/*table, caption, tbody, tfoot, thead, tr, th, td,*/
+/*article, aside, canvas, details, embed,*/
+/*figure, figcaption, footer, header, hgroup,*/
+/*menu, nav, output, ruby, section, summary,*/
+/*time, mark, audio, video {*/
+/*    margin: 0;*/
+/*    padding: 0;*/
+/*    border: 0;*/
+/*    font-size: 100%;*/
+/*    font: inherit;*/
+/*    vertical-align: baseline;*/
+/*}*/
+
+
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section {
+    display: block;
+}
+
+ol, ul {
+    list-style: none;
+}
+
+blockquote, q {
+    quotes: none;
+}
+
+blockquote:before, blockquote:after,
+q:before, q:after {
+    content: '';
+    content: none;
+}
+
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+.container {
+    margin: 0 0 35px auto;
+    width: fit-content;
+    display: flex;
+}
+
+.nav {
+    height: 48px;
+    display: inline-block;
+}
+
+.nav > li, .nav:active > .active {
+    float: left;
+    position: relative;
+    margin: 0 0 4px;
+    height: 44px;
+    color: #ccc;
+    text-shadow: 0 1px rgba(0, 0, 0, 0.9);
+    background-color: rgba(0, 0, 0, 0.05);
+    border: 1px solid #232428;
+    border-bottom-color: #1f2326;
+    background-image: -webkit-linear-gradient(top, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0));
+    background-image: -moz-linear-gradient(top, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0));
+    background-image: -o-linear-gradient(top, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0));
+    background-image: linear-gradient(to bottom, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0));
+    -webkit-box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.05), 0 2px #262a2e, 0 3px #1f2326, 0 4px 3px rgba(0, 0, 0, 0.2);
+    box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.05), 0 2px #262a2e, 0 3px #1f2326, 0 4px 3px rgba(0, 0, 0, 0.2);
+}
+
+.nav > li:hover {
+    color: #b0d157;
+    text-shadow: 0 1px black, 0 0 20px rgba(255, 255, 255, 0.5);
+}
+
+.nav > li.active,
+.nav > .active:active,
+.nav > li:active {
+    z-index: 2;
+    margin: 4px 0 0;
+    height: 43px;
+    color: #aaa;
+    text-shadow: 0 1px black;
+    background-color: rgba(255, 255, 255, 0.03);
+    border-color: #212425;
+    border-width: 1px 0;
+    background-image: -webkit-linear-gradient(top, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0));
+    background-image: -moz-linear-gradient(top, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0));
+    background-image: -o-linear-gradient(top, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0));
+    background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0));
+    -webkit-box-shadow: inset 0 1px rgba(255, 255, 255, 0.05), inset 0 -1px 1px rgba(0, 0, 0, 0.15), 1px 0 rgba(0, 0, 0, 0.05), -1px 0 rgba(0, 0, 0, 0.05), 0 1px rgba(255, 255, 255, 0.05);
+    box-shadow: inset 0 1px rgba(255, 255, 255, 0.05), inset 0 -1px 1px rgba(0, 0, 0, 0.15), 1px 0 rgba(0, 0, 0, 0.05), -1px 0 rgba(0, 0, 0, 0.05), 0 1px rgba(255, 255, 255, 0.05);
+}
+
+.nav > li button {
+    color: #aaa;
+    text-shadow: 0 1px black;
+    background-color: rgba(255, 255, 255, 0.03);
+    border-color: #212425;
+    border-width: 1px 0;
+    background-image: -webkit-linear-gradient(top, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0));
+    background-image: -moz-linear-gradient(top, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0));
+    background-image: -o-linear-gradient(top, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0));
+    background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0));
+    -webkit-box-shadow: inset 0 1px rgba(255, 255, 255, 0.05), inset 0 -1px 1px rgba(0, 0, 0, 0.15), 1px 0 rgba(0, 0, 0, 0.05), -1px 0 rgba(0, 0, 0, 0.05), 0 1px rgba(255, 255, 255, 0.05);
+    box-shadow: inset 0 1px rgba(255, 255, 255, 0.05), inset 0 -1px 1px rgba(0, 0, 0, 0.15), 1px 0 rgba(0, 0, 0, 0.05), -1px 0 rgba(0, 0, 0, 0.05), 0 1px rgba(255, 255, 255, 0.05);
+
+}
+
+
+.nav > li:active {
+    z-index: 3;
+}
+
+.nav > li:first-child {
+    border-left-width: 1px !important;
+    border-left-color: #212425;
+    border-radius: 5px 0 0 5px;
+}
+
+.nav > li:last-child {
+    border-right-width: 1px !important;
+    border-right-color: #212425;
+    border-radius: 0 5px 5px 0;
+}
+
+.nav > li + li, .nav:active > .active + li, .nav:active > li + .active {
+    border-left-width: 0;
+}
+
+.nav > .active + li,
+.nav > .active:active + li,
+.nav > li:active + li,
+.nav > li:active + .active {
+    border-left-width: 1px;
+}
+
+.nav > li > button {
+    display: block;
+    line-height: 44px;
+    padding: 0 20px;
+    font-size: 17px;
+    font-weight: bold;
+    color: inherit;
+    height: max-content;
+    text-decoration: none;
+    outline: 0;
+    height: 100%;
+}
+
+section nav ul li .nav-icon {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    vertical-align: middle;
+}
+

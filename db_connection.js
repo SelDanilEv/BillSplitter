@@ -1,4 +1,4 @@
 const Sequelize = require('sequelize');
-const sequelize = new Sequelize('NodeJS_CP', 'sa', '123qweASD', {host: 'DEFENDER-SD', dialect: 'mssql'});
+const sequelize = new Sequelize('sql4414130', 'sql4414130', '4SNs7fVmgV', {host: 'sql4.freesqldatabase.com', dialect: 'mysql'});
 
 module.exports = sequelize;

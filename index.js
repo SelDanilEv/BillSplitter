@@ -29,7 +29,15 @@ passport.deserializeUser((user, done) => {
     done(null, user);
 });
 
-app.use("/", homeRouter);
+app.post("/connect",
+    passport.authenticate("local"),
+    function (req, res, next) {
+        let view = fs.readFileSync('./view/views/ConnectRoom.html', "utf8");
+        res.send(view);
+    }
+);
+
+app.use("/", homeRouter,);
 
 app.use(function (req, res, next) {
     if (req.user
@@ -43,7 +51,6 @@ app.use("/user", UserRouter);
 app.use("/room", RoomRouter);
 app.use("/request", RequestRouter);
 
-
 passport.use(
     new localStrategy(async (username, password, done) => {
         await userRepository.RegisterUser(username, password);
@@ -53,39 +60,20 @@ passport.use(
     })
 );
 
-app.post("/connect",
-    passport.authenticate("local"),
-    function (req, res, next) {
-        let view = fs.readFileSync('./view/views/ConnectRoom.html', "utf8");
-        res.send(view);
-    }
-);
-
 sequelize.authenticate()
     .then(() => {
         console.log('Соединение с базой данных установлено');
-        Do();
     })
     .catch(err => {
         console.log('Ошибка при соединении с базой данных', err.message);
     });
 
-
 app.use(function (req, res, next) {
     res.status(404).send("Not Found")
 });
 
-app.listen(3000, () => {
-    console.log('Listening on http://localhost:3000`');
+app.listen(3001, () => {
+    console.log('Listening on http://localhost:3001`');
 });
-
-
-const USERControl = require('./repository/RoomRepository');
-
-
-async function Do() {
-    // let x = !!(await USERControl.GetAllUsersByRoom('Room1')).find(x => x =="Defendewr");
-
-}
 
 

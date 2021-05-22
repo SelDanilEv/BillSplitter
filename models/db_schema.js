@@ -1,17 +1,13 @@
 const Sequelize = require('sequelize');
 const Model = Sequelize.Model;
 
-class ROOM extends Model {
-};
+class ROOM extends Model {}
 
-class USER extends Model {
-};
+class USER extends Model {}
 
-class REQUEST extends Model {
-};
+class REQUEST extends Model {}
 
-class USER_ROOM extends Model {
-};
+class USER_ROOM extends Model {}
 
 function internalORM(sequelize) {
     ROOM.init(
@@ -34,7 +30,8 @@ function internalORM(sequelize) {
     );
     REQUEST.init(
         {
-            AMOUNT: {type: Sequelize.DECIMAL, allowNull: false},
+            id: {type: Sequelize.INTEGER, primaryKey: true, autoIncrement: true},
+            AMOUNT: {type: Sequelize.FLOAT, allowNull: false},
             COMMENT: {type: Sequelize.STRING, allowNull: true},
             ACCEPTED: {type: Sequelize.BOOLEAN, allowNull: false, defaultValue: 0}
         },
@@ -54,39 +51,23 @@ function internalORM(sequelize) {
     });
 
     USER.belongsToMany(USER, {
-        through: REQUEST,
+        through: {model: REQUEST, unique: false},
         as: "USER_FROM",
         foreignKey: "USER_FROM",
     });
 
     USER.belongsToMany(USER, {
-        through: REQUEST,
+        through: {model: REQUEST, unique: false},
         as: "USER_TO",
         foreignKey: "USER_TO",
     });
 
     sequelize.sync(true).catch(e => {
-        console.log(e)
+        console.log(e);
     });
-
-    // USER_ROOM.findAll()
-    //     .then((users) => {
-    //         console.log(users);
-    //     })
-    //
-    // REQUEST.findAll({
-    //     where: {
-    //         USER_FROM: "Danil"
-    //     }
-    // })
-    //     .then((users) => {
-    //         console.log(users);
-    //     })
-
 }
 
 exports.ORM = (s) => {
     internalORM(s);
     return {ROOM, USER_ROOM, USER, REQUEST};
 }
-

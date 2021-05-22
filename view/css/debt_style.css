@@ -1,0 +1,35 @@
+.iconblock-7{
+    display: flex;
+    flex-direction: row;
+    position: relative;
+    padding-top: 26px;
+}
+.iconblock-7 .icon {
+    text-align:center;
+    position: relative;
+    top:-4px;
+}
+.iconblock-7 .icon i,
+.iconblock-7 .icon img {
+    font-size:32px;
+    color: #48bf00;
+    transition: all .4s;
+    width: 32px;
+    height: 32px;
+}
+.iconblock-7 .icon img {
+    opacity: .6;
+}
+.iconblock-7:hover .icon i,
+.iconblock-7:hover .icon img {
+    font-size:32px;
+    color: #00ff03;
+    transform: rotate(-360deg);
+    width: 32px;
+    height: 32px;
+    opacity: 1;
+}
+.iconblock-7 #user_debts{
+    font-size: x-large;
+    margin: 0 5px;
+}

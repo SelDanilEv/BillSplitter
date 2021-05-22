@@ -1,0 +1,11 @@
+@media (max-width: 1000px) {
+    .main_wrapper {
+        flex-direction: column;
+    }
+
+    .request_to_me_table, .request_from_me_table {
+        margin: 15px auto;
+        max-width: 90%;
+        min-width: 70%;
+    }
+}

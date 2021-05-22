@@ -3,6 +3,7 @@ const requestController = require("../controllers/RequestController");
 const roomRouter = express.Router();
 
 roomRouter.post("/create", requestController.CreateRequest);
+roomRouter.post("/update", requestController.UpdateRequest);
 roomRouter.post("/accept", requestController.AcceptRequest);
 roomRouter.post("/remove", requestController.RemoveRequest);
 roomRouter.post("/requestsfrom", requestController.GetAllUserRequestFrom);

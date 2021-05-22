@@ -1,15 +1,25 @@
 const Room = require('../models/db_models').ROOM;
 const UserRoom = require('../models/db_models').USER_ROOM;
+const bcrypt = require('../security/bcrypt')
 
 exports.CreateRoom = async function (name, password) {
-    if (name && password && !await this.IsRoomExist(name))
-        Room.create({NAME: name, PASS: password})
+    if (name && password && !await this.IsRoomExist(name)) {
+        password = await bcrypt.cryptPassword(password);
+        await Room.create({NAME: name, PASS: password})
             .catch((err) => console.log('Error: ' + err.message));
+    }
 };
 
 exports.AddUserToRoom = async function (room_name, user_name) {
-    if (!await this.IsUserBelongToRoom(room_name,user_name)){
-        UserRoom.create({room_id: room_name, user_id: user_name})
+    if (!await this.IsUserBelongToRoom(room_name, user_name)) {
+        await UserRoom.create({room_id: room_name, user_id: user_name})
+            .catch((err) => console.log('Error: ' + err.message));
+    }
+};
+
+exports.RemoveUserFromRoom = async function (room_name, user_name) {
+    if (await this.IsUserBelongToRoom(room_name, user_name)) {
+        UserRoom.destroy({where: {room_id: room_name, user_id: user_name}})
             .catch((err) => console.log('Error: ' + err.message));
     }
 };
@@ -62,7 +72,12 @@ exports.IsRoomExist = async function (name) {
 
 exports.VerifyPassword = async function (name, password) {
     let room = await this.GetRoom(name);
-    return room.PASS === password;
+    if (room) {
+        if (password && name && room.PASS) {
+            return bcrypt.comparePassword(password, room.PASS);
+        }
+    }
+    return false;
 }
 
 exports.GetAllUsersByRoom = async function (name) {

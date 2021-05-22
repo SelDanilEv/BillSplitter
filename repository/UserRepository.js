@@ -1,9 +1,12 @@
 const USER = require('../models/db_models').USER;
+const bcrypt = require('../security/bcrypt')
 
 exports.RegisterUser = async function (name, password) {
-    if (name && password && !await this.IsUserExist(name))
-        USER.create({NAME: name, PASS: password})
+    if (name && password && !await this.IsUserExist(name)) {
+        password = await bcrypt.cryptPassword(password);
+        await USER.create({NAME: name, PASS: password})
             .catch((err) => console.log('Error: ' + err.message));
+    }
 };
 
 exports.GetAllUsers = async function () {
@@ -45,8 +48,12 @@ exports.RemoveUser = async function (name) {
 
 exports.VerifyPassword = async function (name, password) {
     let user = await this.GetUser(name);
-    if (password && name && user.PASS)
-        return user.PASS === password;
+    if (user) {
+        if (password && name && user.PASS) {
+            return bcrypt.comparePassword(password, user.PASS);
+        }
+    }
+    return false;
 }
 
 exports.IsUserExist = async function (name) {

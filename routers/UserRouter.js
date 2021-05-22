@@ -8,6 +8,7 @@ userRouter.post("/create", userController.RegisterUser);
 userRouter.post("/connectuser", userController.ConnectUser);
 userRouter.post("/exist", userController.IsUserExist);
 userRouter.post("/checkpassword", userController.VerifyPassword);
+userRouter.post("/currentuser", userController.GetCurrentUser);
 userRouter.put("/update", userController.UpdateUser);
 userRouter.delete("/remove", userController.RemoveUser);
 
