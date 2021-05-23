@@ -3,6 +3,7 @@ const user_api_path = base_api_path + 'user/';
 const room_api_path = base_api_path + 'room/';
 const request_api_path = base_api_path + 'request/';
 
+const socket = io();
 const WrongPassword = 'Wrong_password',
     NameIsTaken = 'Name_is_taken',
     BadRequest = 'Bad Request',
@@ -12,6 +13,10 @@ const WrongPassword = 'Wrong_password',
     ValidationDataError = 'Validation_error';
 
 let currentRoom, currentRoomPassword, currentUser;
+
+socket.on('Update full info', _ => {
+    setTimeout( _ => loadMainPageInfo(),500);
+})
 
 function TryLogin() {
     fetch(base_api_path + 'connect',
@@ -157,6 +162,7 @@ function CreateNewBill() {
                         break;
                     default:
                         TryConnectRoom();
+                        socket.emit('update', 'Update full info');
                 }
             }
         );
@@ -193,7 +199,9 @@ function ChangeRequest(user_to, user_from, comment) {
                 }
             )
         })
-        .then(response => LoadRequestsTo());
+        .then(response => {
+            socket.emit('update', 'Update full info');
+        });
 }
 
 function OpenNewBillPage() {
@@ -300,9 +308,9 @@ function LoadRequestsTo() {
         .then((requestsArray) => {
                 let res = '';
                 for (let request of requestsArray) {
-                    let button1 = `<input class="button green alt" type="button" value="&#10003;" onClick="AcceptRequest(
+                    let button1 = `<input class="button green alt" title="Accept" type="button" value="&#10003;" onClick="AcceptRequest(
                             '${request.USER_TO}','${request.USER_FROM}','${request.AMOUNT}','${request.COMMENT}')" />`;
-                    let button2 = `<input class="button red alt" type="button" value="&#177;" onClick="ChangeRequest(
+                    let button2 = `<input class="button red alt" title="Edit" type="button" value="&#177;" onClick="ChangeRequest(
                             '${request.USER_TO}','${request.USER_FROM}','${request.COMMENT}')" />`;
                     res += `
                     <tr>
@@ -403,6 +411,7 @@ function AcceptRequest(user_to, user_from, amount, comment) {
         .then((responseStatus) => {
             if (responseStatus == OK) {
                 LoadRequestsTo();
+                socket.emit('update', 'Update full info');
                 setTimeout(()=> LoadRequestsTo(),200)
             } else {
                 PutContentInBlock('critical_error', responseStatus)
@@ -417,6 +426,8 @@ function PutContentInMainBlock(content) {
 function PutContentInBlock(blockId, content) {
     document.getElementById(blockId).innerHTML = content
 }
+
+
 
 window.onload = () => {
     fetch(base_api_path + 'login', {method: 'GET'})

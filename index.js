@@ -1,5 +1,7 @@
 const express = require("express");
 const app = express();
+const http = require('http');
+const server = http.createServer(app);
 const bodyParser = require('body-parser');
 const session = require("express-session");
 const passport = require("passport");
@@ -11,6 +13,19 @@ const RequestRouter = require("./routers/RequestRouter.js");
 const homeRouter = require("./routers/HomeRouter.js");
 const sequelize = require("./db_connection.js");
 const userRepository = require("./repository/UserRepository");
+
+const { Server } = require("socket.io");
+const io = new Server(server);
+
+io.on('connection', (socket) => {
+    console.log('New user connected');
+    socket.on('disconnect', () => {
+        console.log('User disconnected');
+    });
+    socket.on('update', (msg) => {
+        socket.broadcast.emit(msg);
+    });
+});
 
 const PORT = process.env.PORT || 3001;
 
@@ -74,7 +89,7 @@ app.use(function (req, res, next) {
     res.status(404).send("Not Found")
 });
 
-app.listen(PORT, () => {
+server.listen(PORT, () => {
     console.log(`Listening on http://localhost:${PORT}`);
 });
 
