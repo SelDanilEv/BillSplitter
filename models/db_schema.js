@@ -12,21 +12,38 @@ class USER_ROOM extends Model {}
 function internalORM(sequelize) {
     ROOM.init(
         {
-            NAME: {type: Sequelize.STRING, allowNull: false, primaryKey: true},
-            PASS: {type: Sequelize.STRING, allowNull: false}
+            NAME: {
+                type: Sequelize.STRING,
+                allowNull: false,
+                primaryKey: true},
+            PASS: {
+                type: Sequelize.STRING,
+                allowNull: false}
         },
-        {sequelize, modelName: 'ROOM', tableName: 'ROOM', timestamps: false}
+        {
+            sequelize,
+            modelName: 'ROOM',
+            tableName: 'ROOM',
+            timestamps: false}
     );
     USER.init(
         {
             NAME: {type: Sequelize.STRING, allowNull: false, primaryKey: true},
             PASS: {type: Sequelize.STRING, allowNull: false}
         },
-        {sequelize, modelName: 'USER', tableName: 'USERS', timestamps: false}
+        {
+            sequelize,
+            modelName: 'USER',
+            tableName: 'USERS',
+            timestamps: false}
     );
     USER_ROOM.init(
         {},
-        {sequelize, modelName: 'USER_ROOM', tableName: 'USER_ROOM', timestamps: false}
+        {
+            sequelize,
+            modelName: 'USER_ROOM',
+            tableName: 'USER_ROOM',
+            timestamps: false}
     );
     REQUEST.init(
         {

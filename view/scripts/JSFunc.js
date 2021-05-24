@@ -15,7 +15,7 @@ const WrongPassword = 'Wrong_password',
 let currentRoom, currentRoomPassword, currentUser;
 
 socket.on('Update full info', _ => {
-    setTimeout( _ => loadMainPageInfo(),500);
+    setTimeout(_ => loadMainPageInfo(), 500);
 })
 
 function TryLogin() {
@@ -62,7 +62,7 @@ function LeaveRoom() {
                     USER_NAME: currentUser
                 }
             )
-        });
+        }).then(_ => socket.emit('update', 'Update full info'));
     window.location = '/';
 }
 
@@ -103,6 +103,7 @@ function TryConnectRoom() {
                         currentRoomPassword = roomPass;
                         PutContentInMainBlock(view);
                         loadMainPageInfo();
+                        socket.emit('update', 'Update full info');
                 }
             }
         );
@@ -412,7 +413,7 @@ function AcceptRequest(user_to, user_from, amount, comment) {
             if (responseStatus == OK) {
                 LoadRequestsTo();
                 socket.emit('update', 'Update full info');
-                setTimeout(()=> LoadRequestsTo(),200)
+                setTimeout(() => LoadRequestsTo(), 200)
             } else {
                 PutContentInBlock('critical_error', responseStatus)
             }
@@ -426,7 +427,6 @@ function PutContentInMainBlock(content) {
 function PutContentInBlock(blockId, content) {
     document.getElementById(blockId).innerHTML = content
 }
-
 
 
 window.onload = () => {
